@@ -17,12 +17,7 @@ export async function uploadPortfolioFile(file: File): Promise<AnalysisResponse>
   formData.append('file', file);
 
   try {
-    // Check if we're in development mode
-    const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    // Use different URLs for local development vs production
-    const apiUrl = isLocalDev
-  ? 'http://localhost:5000/upload' // Local development URL
-  : '/api/upload'; // Production URL
+    const apiUrl = import.meta.env.VITE_API_URL + '/upload';
 
     console.log(`Uploading file to: ${apiUrl}`);
     
